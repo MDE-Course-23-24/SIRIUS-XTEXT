@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sm:StateMachine
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:sm="http://it.univaq.disim.sirius.usecases/statemachine"
+    xsi:schemaLocation="http://it.univaq.disim.sirius.usecases/statemachine /it.univaq.disim.usecase.statemachine.model/model/statemachine.ecore">
+  <states name="Juri Start">
+    <actions
+        name="command1"
+        code="C1"/>
+  </states>
+  <states name="Juri End">
+    <actions
+        name="command 2"
+        code="c2"/>
+  </states>
+  <transtions
+      source="//@states.0"
+      target="//@states.1">
+    <trigger
+        name="event 1"
+        code="e1"/>
+  </transtions>
+</sm:StateMachine>

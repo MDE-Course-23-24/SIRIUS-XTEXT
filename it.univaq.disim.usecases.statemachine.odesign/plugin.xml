@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="it.univaq.disim.usecases.statemachine.odesign.Activator"
+               id="it.univaq.disim.usecases.statemachine.odesign"
+	       name="odesign">
+    </component>
+  </extension>
+</plugin>

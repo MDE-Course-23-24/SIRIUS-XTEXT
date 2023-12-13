@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:properties="http://www.eclipse.org/sirius/properties/1.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="odesign" version="12.0.0.2017041100">
+  <ownedViewpoints name="statemachine" modelFileExtension="statemachine">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="statemachineDD" domainClass="statemachine::StateMachine" enablePopupBars="true">
+      <metamodel href="http://it.univaq.disim.sirius.usecases/statemachine#/"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="transitionEdge" doubleClickDescription="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@toolSections.0/@ownedTools[name='editEvent']" sourceMapping="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@containerMappings[name='stateCN']" targetMapping="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@containerMappings[name='stateCN']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="statemachine::Transition" useDomainElement="true" reconnections="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@toolSections.0/@ownedTools[name='reconnectTarget']">
+          <style sizeComputationExpression="2" routingStyle="manhattan">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="aql: self.trigger.name + ' ' + self.trigger.code">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="stateCN" semanticCandidatesExpression="feature:states" domainClass="statemachine::State" childrenPresentation="List">
+          <subNodeMappings name="commandsSN" semanticCandidatesExpression="feature:actions" domainClass="statemachine::Command">
+            <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="aql:self.name + ' ' + self.code" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" roundedCorner="true">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="palette">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="state" elementsToSelect="feature:states" containerMappings="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@containerMappings[name='stateCN']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="statemachine::State" referenceName="states"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="command" elementsToSelect="feature:actions" nodeMappings="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@containerMappings[name='stateCN']/@subNodeMappings[name='commandsSN']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="statemachine::Command" referenceName="actions" variableName="commandInstance">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:commandInstance">
+                    <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Create new Command">
+                      <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                        <initialOperation/>
+                      </buttons>
+                      <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                        <initialOperation/>
+                      </buttons>
+                      <page name="Default Page" labelExpression="Command" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@toolSections.0/@ownedTools[name='command']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                      <groups name="Default Group" labelExpression="Properties" semanticCandidateExpression="var:self">
+                        <controls xsi:type="properties:TextDescription" labelExpression="Name:" valueExpression="aql:commandInstance.name">
+                          <initialOperation>
+                            <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:commandInstance">
+                              <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:newValue"/>
+                            </firstModelOperations>
+                          </initialOperation>
+                        </controls>
+                        <controls xsi:type="properties:TextDescription" labelExpression="Code:" valueExpression="aql:commandInstance.code">
+                          <initialOperation>
+                            <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:commandInstance">
+                              <subModelOperations xsi:type="tool_1:SetValue" featureName="code" valueExpression="var:newValue"/>
+                            </firstModelOperations>
+                          </initialOperation>
+                        </controls>
+                      </groups>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="transition" elementsToSelect="feature:eContainer" edgeMappings="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@edgeMappings[name='transitionEdge']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.eContainer()">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="statemachine::Transition" referenceName="transtions" variableName="transitionInstance">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:source"/>
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:transitionInstance">
+                      <subModelOperations xsi:type="tool_1:CreateInstance" typeName="statemachine::Event" referenceName="trigger" variableName="eventInstance">
+                        <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Create new Event">
+                          <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                            <initialOperation/>
+                          </buttons>
+                          <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                            <initialOperation/>
+                          </buttons>
+                          <page name="Default Page" labelExpression="New Event" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@toolSections.0/@ownedTools[name='transition']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@subModelOperations.2/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                          <groups name="Default Group" labelExpression="Properties" semanticCandidateExpression="var:self">
+                            <controls xsi:type="properties:TextDescription" labelExpression="Name:" valueExpression="aql:eventInstance.name">
+                              <initialOperation>
+                                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:eventInstance">
+                                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:newValue"/>
+                                </firstModelOperations>
+                              </initialOperation>
+                            </controls>
+                            <controls xsi:type="properties:TextDescription" labelExpression="Code:" valueExpression="aql:eventInstance.code">
+                              <initialOperation>
+                                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:eventInstance">
+                                  <subModelOperations xsi:type="tool_1:SetValue" featureName="code" valueExpression="aql:newValue"/>
+                                </firstModelOperations>
+                              </initialOperation>
+                            </controls>
+                          </groups>
+                        </subModelOperations>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="editEvent" mappings="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@edgeMappings[name='transitionEdge']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="feature:trigger">
+                <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Edit Event">
+                  <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                    <initialOperation/>
+                  </buttons>
+                  <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                    <initialOperation/>
+                  </buttons>
+                  <page name="Default Page" labelExpression="Event" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='statemachine']/@ownedRepresentations[name='statemachineDD']/@defaultLayer/@toolSections.0/@ownedTools[name='editEvent']/@initialOperation/@firstModelOperations/@subModelOperations.0/@groups.0"/>
+                  <groups name="Default Group" labelExpression="Properties" semanticCandidateExpression="var:self">
+                    <controls xsi:type="properties:TextDescription" labelExpression="Name:" valueExpression="aql:element.trigger.name">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.trigger">
+                          <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:newValue"/>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                    <controls xsi:type="properties:TextDescription" labelExpression="Code:" valueExpression="aql:element.trigger.code">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.trigger">
+                          <subModelOperations xsi:type="tool_1:SetValue" featureName="code" valueExpression="aql:newValue"/>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                  </groups>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="reconnectTarget">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="reconnectTarget" reconnectionKind="RECONNECT_SOURCE">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="it.univaq.disim.usecases.statemachine.odesign.Services"/>
+  </ownedViewpoints>
+</description:Group>

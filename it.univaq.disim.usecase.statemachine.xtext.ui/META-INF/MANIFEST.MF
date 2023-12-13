@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: it.univaq.disim.usecase.statemachine.xtext.ui
+Bundle-ManifestVersion: 2
+Bundle-Name: it.univaq.disim.usecase.statemachine.xtext.ui
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: it.univaq.disim.usecase.statemachine.xtext.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: it.univaq.disim.usecase.statemachine.xtext,
+ it.univaq.disim.usecase.statemachine.xtext.ide,
+ it.univaq.disim.usecase.statemachine.model,
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.ui.editors;bundle-version="3.14.300",
+ org.eclipse.ui.ide;bundle-version="3.18.500",
+ org.eclipse.ui,
+ org.eclipse.compare,
+ org.eclipse.xtext.builder
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: it.univaq.disim.usecase.statemachine.xtext.ui.contentassist,
+ it.univaq.disim.usecase.statemachine.xtext.ui.internal,
+ it.univaq.disim.usecase.statemachine.xtext.ui.quickfix
+Bundle-Activator: it.univaq.disim.usecase.statemachine.xtext.ui.internal.XtextActivator
